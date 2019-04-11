@@ -42,7 +42,7 @@
                 <RotateTransform Angle="+90"/>
             </TextBlock.LayoutTransform>
         </TextBlock>
-        <TextBlock Text ="{Binding ElementName=rudderSlider ,StringFormat=0.##, Path=Value}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-        <TextBlock Text ="{Binding ElementName=throttleSlider ,StringFormat=0.##, Path=Value}" Margin="3" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Text ="{Binding ElementName=rudderSlider ,StringFormat=0.##, Path=Value}" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Text ="{Binding ElementName=throttleSlider ,StringFormat=0.##, Path=Value}" Margin="0" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

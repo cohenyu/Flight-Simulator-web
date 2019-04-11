@@ -7,31 +7,33 @@
         xmlns:Controls="clr-namespace:FlightSimulator.Views"
         mc:Ignorable="d"
 Title="MainWindow" Height="600" Width="1000">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="500"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3"/>
-        </Grid.ColumnDefinitions>
+    <Viewbox >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3"/>
+            </Grid.ColumnDefinitions>
 
-        <TabControl Grid.Column="1" Grid.Row="1" Margin="5">
-            <TabItem Header="Manul">
-                <Grid>
-                    <local:manual  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Auto Pilot">
-                <Grid>
-                    <local:autoPilot  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="8"/>
-                </Grid>
-            </TabItem>
-        </TabControl>
+            <TabControl Grid.Column="1" Grid.Row="1" Margin="5">
+                <TabItem Header="Manul">
+                    <Grid>
+                        <local:manual  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Auto Pilot">
+                    <Grid>
+                        <local:autoPilot  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="8"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
 
-        <TextBlock Text="Flight Simulator" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="Heavy" Foreground="DarkSlateGray" />
-        <local:flightBoardControls Grid.Row="2"/>
-    </Grid>
+            <TextBlock Text="Flight Simulator" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="Heavy" Foreground="DarkSlateGray" />
+            <local:flightBoardControls Grid.Row="2"/>
+        </Grid>
+    </Viewbox>
 </Window>
