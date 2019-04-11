@@ -12,6 +12,7 @@ namespace FlightSimulator.ViewModels
     class SettingsVM
     {
         private ICommand _settingsCommand;
+        //properties
         public ICommand SettingsCommand
         {
             get
@@ -25,7 +26,21 @@ namespace FlightSimulator.ViewModels
             settingsWindow s = new settingsWindow();
             s.ShowDialog();
         }
-        
 
+        private ICommand _connectCommand;
+        //properies
+        public ICommand ConnectCommand
+        {
+            get
+            {
+                return _connectCommand ?? (_connectCommand = new CommandHandler(()=>OnConnect()));
+            }
+
+        }
+        private void OnConnect()
+        {
+            Console.WriteLine("connecttttt");
+            Info serverInfo = new Info();
+        }
     }
 }
