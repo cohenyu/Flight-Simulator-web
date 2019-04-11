@@ -28,6 +28,6 @@
         <TextBox x:Name="flightCommandPort" Width="190" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Padding="3" Margin="3" Text="{Binding FlightInfoPort}"></TextBox>
 
         <Button x:Name="okButtom" Grid.Row="4" HorizontalAlignment="Right" Grid.Column="1" Margin="5" Padding="5" Width="80" Command="{Binding OKCommand}">OK</Button>
-        <Button x:Name="cancelButtom" Grid.Row="4" HorizontalAlignment="Left" Grid.Column="2" Width="80"  Margin="5" Padding="5" Command="{Binding ClickCommand}">Cancel</Button>
+        <Button x:Name="cancelButtom" Grid.Row="4" HorizontalAlignment="Left" Grid.Column="2" Width="80"  Margin="5" Padding="5" Command="{Binding CancelCommand}">Cancel</Button>
     </Grid>
 </Window>
