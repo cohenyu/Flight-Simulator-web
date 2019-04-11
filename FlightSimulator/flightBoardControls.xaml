@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="FlightSimulator.flightBoardControls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulator.Views"
+             mc:Ignorable="d" 
+               d:DesignHeight="500" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="1" Grid.ColumnSpan="2" BorderBrush="Black" FontWeight="Bold" Grid.Row="0" Content="Connect" FontSize="15" Margin="4" VerticalAlignment="Center" HorizontalAlignment="Center"  Height="30" Width="130"/>
+        <Button Grid.Column="3" Grid.ColumnSpan="2" BorderBrush="Black" FontWeight="Bold" Grid.Row="0" Content="Settings" FontSize="15" Margin="4" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30" Width="130" Command="{Binding SettingsCommand}"/>
+        <local:FlightBoard Grid.Column="0" Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="5" />
+    </Grid>
+</UserControl>
