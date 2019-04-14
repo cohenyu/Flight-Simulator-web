@@ -97,7 +97,7 @@ namespace FlightSimulator.Model
                 {
                     continue;
                 }
-
+                //yuyuyuyu
                 splitStr = inputLine.Split(',');
                 Lon = float.Parse(splitStr[0]);
                 Lat = float.Parse(splitStr[1]);
