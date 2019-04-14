@@ -40,7 +40,8 @@ namespace FlightSimulator.ViewModels
         private void OnConnect()
         {
             Console.WriteLine("connecttttt");
-            Info serverInfo = new Info();
+            SingletonInfoServer.InfoInstance.openServer();
+            //the other side
         }
     }
 }

@@ -25,11 +25,9 @@ namespace FlightSimulator.Model
             shouldStop = false;
             lon = 0.0f;
             lat = 0.0f;
-
-            Thread thread = new Thread(new ThreadStart(startServer));
-            thread.Start();
         }
 
+        //properties
         public float Lon
         {
             get {
@@ -40,7 +38,7 @@ namespace FlightSimulator.Model
                lon = value;
             }
         }
-
+        //properties
         public float Lat
         {
             get { return lat; }
@@ -55,13 +53,13 @@ namespace FlightSimulator.Model
         {
             char[] buffer = new char[1024];
             int i = 0;
-            char last = '\0';
+            char lastChar = '\0';
 
-            while (i < 1024 && last != '\n')
+            while (i < 1024 && lastChar != '\n')
             {
                 char input = reader.ReadChar();
                 buffer[i] = input;
-                last = buffer[i];
+                lastChar = buffer[i];
                 i++;
             }
 
@@ -69,20 +67,27 @@ namespace FlightSimulator.Model
         }
 
 
-        private void startServer()
+        public void openServer()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(Properties.Settings.Default.FlightServerIP),
-                                                    Properties.Settings.Default.FlightInfoPort);
+                                                  Properties.Settings.Default.FlightInfoPort);
             TcpListener server = new TcpListener(ep);
+
             server.Start();
 
             TcpClient clientSocket = server.AcceptTcpClient();
+            Thread thread = new Thread(() => listenFlight(server, clientSocket));
+            thread.Start();
+        }
+
+        private void listenFlight(TcpListener server, TcpClient clientSocket)
+        {
             NetworkStream stream = clientSocket.GetStream();
             BinaryReader reader = new BinaryReader(stream);
             DateTime start = DateTime.UtcNow;
 
             string inputLine;
-            string[] splitted;
+            string[] splitStr;
 
             while (!shouldStop)
             {
@@ -93,9 +98,9 @@ namespace FlightSimulator.Model
                     continue;
                 }
 
-                splitted = inputLine.Split(',');
-                Lon = float.Parse(splitted[0]);
-                Lat = float.Parse(splitted[1]);
+                splitStr = inputLine.Split(',');
+                Lon = float.Parse(splitStr[0]);
+                Lat = float.Parse(splitStr[1]);
                 Console.WriteLine("Lon {0} Lat {1}", Lon, Lat);
                 //Thread.Sleep(250);
             }
@@ -104,12 +109,11 @@ namespace FlightSimulator.Model
             server.Stop();
 
         }
-
-
     }
+
 }
 
 
 
 
-    
+
