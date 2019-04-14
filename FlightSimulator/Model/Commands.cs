@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.IO;
+using System.Threading;
 
 
 namespace FlightSimulator.Model
@@ -13,7 +14,7 @@ namespace FlightSimulator.Model
     class Commands
     {
         private TcpClient client;
-        private BinaryWriter writer;
+        private NetworkStream writer;
 
         private Commands()
         {
@@ -36,6 +37,15 @@ namespace FlightSimulator.Model
         }
         #endregion
 
+        public void openClient()
+        {
+            new Thread(delegate ()
+            {
+                Console.WriteLine("The port is: " + Convert.ToString(ApplicationSettingsModel.Instance.FlightCommandPort));
+                Connect(ApplicationSettingsModel.Instance.FlightCommandPort, ApplicationSettingsModel.Instance.FlightServerIP);
+            }).Start();
+        }
+
         public void Connect(int port, string ip)
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -50,7 +60,7 @@ namespace FlightSimulator.Model
                    
                 }
             }
-            writer = new BinaryWriter(client.GetStream());
+            writer = client.GetStream(); 
         }
 
         public void sendData(string data)
@@ -58,11 +68,17 @@ namespace FlightSimulator.Model
             if (!string.IsNullOrEmpty(data))
             {
                 string[] commands = data.Split('\n');
-                foreach(string line in commands)
+                if (writer.CanWrite)
                 {
-                    writer.Write(System.Text.Encoding.ASCII.GetBytes(line + "\r\n"));
-                    System.Threading.Thread.Sleep(2000);
+                    foreach (string line in commands)
+                    {
+                        Byte[] bytes = Encoding.ASCII.GetBytes(line + "\r\n");
+                        writer.Write(bytes, 0, bytes.Length);
+                        System.Threading.Thread.Sleep(2000);
+                    }
+
                 }
+                
             }
         }
 

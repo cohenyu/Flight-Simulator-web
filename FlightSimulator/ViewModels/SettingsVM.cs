@@ -33,15 +33,16 @@ namespace FlightSimulator.ViewModels
         {
             get
             {
-                return _connectCommand ?? (_connectCommand = new CommandHandler(()=>OnConnect()));
+                return _connectCommand ?? (_connectCommand = new CommandHandler(() => OnConnect()));
             }
 
         }
         private void OnConnect()
         {
             Console.WriteLine("connecttttt");
-            Info serverInfo = new Info();
-           
+            SingletonInfoServer.InfoInstance.openServer();
+            Commands.CommandInstance.openClient();
+
         }
     }
 }

@@ -55,10 +55,6 @@ namespace FlightSimulator.ViewModels
                 }
                 return _colorToChange;
             }
-            set
-            {
-                _colorToChange = value;
-            }
         }
         private ICommand _clearCommand;
         public ICommand ClearCommand
@@ -88,7 +84,6 @@ namespace FlightSimulator.ViewModels
         {
             string textToSend = StringCommandFromUser;
             StringCommandFromUser = "";
-            _colorToChange = "White";
             commandsClient.sendData(textToSend);
         }
 
