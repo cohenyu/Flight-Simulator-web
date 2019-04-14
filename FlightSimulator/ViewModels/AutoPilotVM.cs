@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,11 +8,90 @@ using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels
 {
-    class AutoPilotVM :BaseNotify
+    class AutoPilotVM : BaseNotify
     {
-        private String stringCommandFromUser = "";
+        private int countColurTime;
+        public Commands commandsClient;
 
-        private ICommand _clickCommand;
+        //counstractor
+        public AutoPilotVM()
+        {
+            commandsClient = Commands.CommandInstance;
+            countColurTime = 0;
+        }
+
+        private String _stringFromUser;
+
+        //properties
+        public String StringCommandFromUser
+        {
+            get
+            {
+                return _stringFromUser;
+            }
+            set
+            {
+                _stringFromUser = value;
+                NotifyPropertyChanged("StringCommandFromUser");
+                NotifyPropertyChanged("ChangeColor");
+            }
+
+        }
+
+        private String _colorToChange;
+        public String ChangeColor
+        {
+            get
+            {
+                if (_stringFromUser == "" || countColurTime == 0)
+                {
+                    countColurTime = countColurTime + 1;
+                    _colorToChange = "White";
+                }
+                else
+                {
+
+                    _colorToChange = "Pink";
+                }
+                return _colorToChange;
+            }
+            set
+            {
+                _colorToChange = value;
+            }
+        }
+        private ICommand _clearCommand;
+        public ICommand ClearCommand
+        {
+            get
+            {
+                return _clearCommand ?? (_clearCommand = new CommandHandler(() => OnClickClear()));
+            }
+        }
+        private void OnClickClear()
+        {
+            _stringFromUser = "";
+            NotifyPropertyChanged(_stringFromUser);
+        }
+
+        private ICommand _okCommand;
+        public ICommand OkCommand
+        {
+            get
+            {
+                return _clearCommand ?? (_clearCommand = new CommandHandler(() => OnClickOK()));
+
+            }
+         
+        }
+        private void OnClickOK()
+        {
+            string textToSend = StringCommandFromUser;
+            StringCommandFromUser = "";
+            _colorToChange = "White";
+            commandsClient.sendData(textToSend);
+        }
 
     }
 }
+

@@ -30,12 +30,13 @@ namespace FlightSimulator.Model
         //properties
         public float Lon
         {
-            get {
+            get
+            {
                 return lon;
             }
             set
             {
-               lon = value;
+                lon = value;
             }
         }
         //properties
@@ -110,10 +111,4 @@ namespace FlightSimulator.Model
 
         }
     }
-
 }
-
-
-
-
-

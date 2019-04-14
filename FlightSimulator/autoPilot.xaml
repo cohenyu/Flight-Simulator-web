@@ -19,10 +19,10 @@
             <ColumnDefinition Width="115"/>
             <ColumnDefinition Width="115"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="1" BorderBrush="Black" FontWeight="Bold" Grid.Row="3" Content="OK" FontSize="15" Margin="10" VerticalAlignment="Top"/>
-        <Button Grid.Column="2" BorderBrush="Black" FontWeight="Bold" Grid.Row="3" Content="Clear" FontSize="15" Margin="10" VerticalAlignment="Top"/>
-        <TextBox Grid.RowSpan="3" Grid.ColumnSpan="4" BorderBrush="Black" Margin="10" AcceptsReturn="True">
-            <TextBox.Style>
+        <Button Grid.Column="1" BorderBrush="Black" FontWeight="Bold" Grid.Row="3" Content="OK" FontSize="15" Margin="10" VerticalAlignment="Top" Command="{Binding OkCommand}"/>
+        <Button Grid.Column="2" BorderBrush="Black" FontWeight="Bold" Grid.Row="3" Content="Clear" FontSize="15" Margin="10" VerticalAlignment="Top" Command="{Binding ClearCommand}"/>
+        <TextBox Grid.RowSpan="3" Grid.ColumnSpan="4" BorderBrush="Black" Margin="10" AcceptsReturn="True" Background="{Binding ChangeColor, UpdateSourceTrigger=PropertyChanged}" Text="{Binding StringCommandFromUser, UpdateSourceTrigger=PropertyChanged}">
+            <!--<TextBox.Style>
                 <Style TargetType="TextBox">
                     <Setter Property="Background" Value="LightPink"/>
                     <Setter Property="Margin" Value="5 0 5 5"/>
@@ -33,7 +33,7 @@
                         </Trigger>
                     </Style.Triggers>
                 </Style>
-            </TextBox.Style>
+            </TextBox.Style>-->
         </TextBox>
     </Grid>
 </UserControl>
