@@ -34,8 +34,8 @@
             </TextBlock.LayoutTransform>
         </TextBlock>
         <Controls:Joystick x:Name="joystick" Grid.Column="2" Grid.Row="1"/>
-        <Slider x:Name="rudderSlider" Value="0"  Grid.Column="2" HorizontalAlignment="Center" Height="45" Grid.Row="2" Margin="6" VerticalAlignment="Top" Width="300"  Minimum="-1" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.1"/>
-        <Slider x:Name="throttleSlider" Grid.Column="1" HorizontalAlignment="Left" Height="300"  Grid.Row="1" Margin="0" VerticalAlignment="Center" Minimum="-1" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.1" Orientation="Vertical"/>
+        <Slider x:Name="rudderSlider" Grid.Column="2" HorizontalAlignment="Center" Height="45" Grid.Row="2" Margin="6" VerticalAlignment="Top" Width="300"  Minimum="-1" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding Rudder}"/>
+        <Slider x:Name="throttleSlider" Grid.Column="1" HorizontalAlignment="Left" Height="300"  Grid.Row="1" Margin="0" VerticalAlignment="Center" Minimum="-1" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.1" Orientation="Vertical" Value="{Binding Throttle}"/>
         <TextBlock Text ="{Binding ElementName=joystick ,StringFormat=0.0#, Path=Aileron}" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <TextBlock Text="{Binding ElementName=joystick ,StringFormat=0.0#, Path=Elevator}"  Grid.Column="3" Grid.Row="1" HorizontalAlignment ="Center" VerticalAlignment="top">
             <TextBlock.LayoutTransform>

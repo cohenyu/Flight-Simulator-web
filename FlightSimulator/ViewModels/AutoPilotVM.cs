@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Threading;
 
 namespace FlightSimulator.ViewModels
 {
@@ -75,7 +76,7 @@ namespace FlightSimulator.ViewModels
         {
             get
             {
-                return _clearCommand ?? (_clearCommand = new CommandHandler(() => OnClickOK()));
+                return _okCommand ?? (_okCommand = new CommandHandler(() => OnClickOK()));
 
             }
          
@@ -84,7 +85,8 @@ namespace FlightSimulator.ViewModels
         {
             string textToSend = StringCommandFromUser;
             StringCommandFromUser = "";
-            commandsClient.sendData(textToSend);
+            Thread thread = new Thread(() => commandsClient.sendData(textToSend));
+            thread.Start();
         }
 
     }

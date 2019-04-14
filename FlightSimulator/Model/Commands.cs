@@ -28,7 +28,7 @@ namespace FlightSimulator.Model
         {
             get
             {
-                if(command_instance == null)
+                if (command_instance == null)
                 {
                     command_instance = new Commands();
                 }
@@ -41,7 +41,6 @@ namespace FlightSimulator.Model
         {
             new Thread(delegate ()
             {
-                Console.WriteLine("The port is: " + Convert.ToString(ApplicationSettingsModel.Instance.FlightCommandPort));
                 Connect(ApplicationSettingsModel.Instance.FlightCommandPort, ApplicationSettingsModel.Instance.FlightServerIP);
             }).Start();
         }
@@ -55,12 +54,12 @@ namespace FlightSimulator.Model
                 {
                     client.Connect(ep);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
-                   
+
                 }
             }
-            writer = client.GetStream(); 
+            writer = client.GetStream();
         }
 
         public void sendData(string data)
@@ -78,7 +77,7 @@ namespace FlightSimulator.Model
                     }
 
                 }
-                
+
             }
         }
 
