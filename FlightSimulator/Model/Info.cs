@@ -37,6 +37,8 @@ namespace FlightSimulator.Model
             set
             {
                 lon = value;
+                //
+                NotifyPropertyChanged("Lon");
             }
         }
         //properties
@@ -96,7 +98,7 @@ namespace FlightSimulator.Model
 
                 if (Convert.ToInt32((DateTime.UtcNow - start).TotalSeconds) < 90)
                 {
-                    continue;
+                    continue; 
                 }
                 //yuyuyuyu
                 splitStr = inputLine.Split(',');

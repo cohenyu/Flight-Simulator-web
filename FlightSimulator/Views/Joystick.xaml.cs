@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace FlightSimulator.Views
 {
     /// <summary>
@@ -146,8 +147,16 @@ namespace FlightSimulator.Views
             double distance = Math.Round(Math.Sqrt(deltaPos.X * deltaPos.X + deltaPos.Y * deltaPos.Y));
             if (distance >= canvasWidth / 2 || distance >= canvasHeight / 2)
                 return;
-            Aileron = -deltaPos.Y;
-            Elevator = deltaPos.X;
+           
+            Elevator = -deltaPos.Y;
+            Elevator /= 124;
+            Console.WriteLine("Elevator: " + Elevator);
+            System.Diagnostics.Debug.WriteLine("Elevator: " + Elevator);
+            Aileron = deltaPos.X;
+            Aileron /= 124;
+            Console.WriteLine("Aileron: " + Aileron);
+            System.Diagnostics.Debug.WriteLine("Aileron: " + Aileron);
+
 
             knobPosition.X = deltaPos.X;
             knobPosition.Y = deltaPos.Y;

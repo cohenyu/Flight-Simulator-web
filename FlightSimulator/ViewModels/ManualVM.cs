@@ -11,13 +11,16 @@ namespace FlightSimulator.ViewModels
     {
         String _rudderP;
         String _throttleP;
-     
+        String _elevatorP;
+        String _aileronP;
 
         public ManualVM()
         {
             _rudderP = "set /controls/flight/rudder ";
             _throttleP = "set /controls/engines/current-engine/throttle ";
-            
+            _elevatorP = "set /controls/flight/elevator ";
+            _aileronP = "set /controls/flight/aileron ";
+
 
         }
 
@@ -42,5 +45,29 @@ namespace FlightSimulator.ViewModels
             }
 
         }
+
+        public double Aileron
+        {
+            set
+            {
+                String messageToClient = _aileronP + value;
+                Commands.CommandInstance.sendData(messageToClient);
+
+            }
+
+        }
+     
+        public double Elevator
+        {
+            set
+            {
+                String messageToClient = _elevatorP + value;
+                Commands.CommandInstance.sendData(messageToClient);
+
+            }
+
+        }
+
+
     }
 }
