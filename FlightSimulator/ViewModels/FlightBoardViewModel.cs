@@ -11,10 +11,10 @@ namespace FlightSimulator.ViewModels
 {
     public class FlightBoardViewModel : BaseNotify
     {
-        private Info info;
+        private FlightBoardModel info;
         public FlightBoardViewModel()
         {
-            info = new Info();
+            info = new FlightBoardModel();
             info.PropertyChanged += FlightBoardViewModel_PropertyChanged;
         }
 

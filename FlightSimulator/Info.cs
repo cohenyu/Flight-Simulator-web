@@ -13,34 +13,40 @@ using System.Threading;
 
 namespace FlightSimulator
 {
-    class SingletonInfoServer : BaseNotify
+    class Info : BaseNotify
     {
         private bool shouldStop;
         private float? lon;
         private float? lat;
+        private double throttle;
+        private double rudder;
+        private double aileron;
+        private double elevator;
 
-        private static SingletonInfoServer _serverInstance;
+        private static Info _serverInstance;
         //properties
-        public static SingletonInfoServer Instance
+        public static Info Instance
         {
             get
             {
                 //if not create yet
                 if (_serverInstance == null)
                 {
-                    _serverInstance = new SingletonInfoServer();
+                    _serverInstance = new Info();
                 }
                 return _serverInstance;
             }
-
         }
 
-        private SingletonInfoServer()
+        private Info()
         {
             shouldStop = false;
             lon = null;
             lat = null;
-
+            throttle = 0;
+            rudder = 0;
+            aileron = 0;
+            elevator = 0;
         }
 
         //properties
@@ -65,6 +71,62 @@ namespace FlightSimulator
             {
                 lat = value;
                 NotifyPropertyChanged("Lat");
+            }
+        }
+
+        //properties
+        public double Throttle
+        {
+            get
+            {
+                return throttle;
+            }
+            private set
+            {
+                throttle = value;
+                NotifyPropertyChanged("Throttle");
+            }
+        }
+
+        //properties
+        public double Rudder
+        {
+            get
+            {
+                return rudder;
+            }
+            private set
+            {
+                rudder = value;
+                NotifyPropertyChanged("Rudder");
+            }
+        }
+
+        //properties
+        public double Aileron
+        {
+            get
+            {
+                return aileron;
+            }
+            private set
+            {
+                rudder = value;
+                NotifyPropertyChanged("Aileron");
+            }
+        }
+
+        //properties
+        public double Elevator
+        {
+            get
+            {
+                return elevator;
+            }
+            private set
+            {
+                rudder = value;
+                NotifyPropertyChanged("Elevator");
             }
         }
 
@@ -114,7 +176,7 @@ namespace FlightSimulator
             string inputLine;
             string[] splitStr;
 
-            Thread.Sleep(100 * 1000);
+            //Thread.Sleep(100 * 1000);
             while (!shouldStop)
             {
                 inputLine = readUntilNewLine(reader);
@@ -123,19 +185,22 @@ namespace FlightSimulator
                     break;
                 }
 
-                //if (Convert.ToInt32((DateTime.UtcNow - start).TotalSeconds) < 90)
-                //{
-                //    continue;
-                //}
+                if (Convert.ToInt32((DateTime.UtcNow - start).TotalSeconds) < 90)
+                {
+                    continue;
+                }
 
                 splitStr = inputLine.Split(',');
                 Lon = float.Parse(splitStr[0]);
                 Lat = float.Parse(splitStr[1]);
+                Aileron = float.Parse(splitStr[19]);
+                Elevator = float.Parse(splitStr[20]);
+                Rudder = float.Parse(splitStr[21]);
+                Throttle = float.Parse(splitStr[23]);
             }
 
             clientSocket.Close();
             server.Stop();
         }
-
     }
 }

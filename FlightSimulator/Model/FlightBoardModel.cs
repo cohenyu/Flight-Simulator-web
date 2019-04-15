@@ -13,11 +13,11 @@ using System.Threading;
 
 namespace FlightSimulator.Model
 {
-    public class Info : BaseNotify
+    public class FlightBoardModel : BaseNotify
     {
-        public Info()
+        public FlightBoardModel()
         {
-            SingletonInfoServer.Instance.PropertyChanged += Instance_PropertyChanged;
+            Info.Instance.PropertyChanged += Instance_PropertyChanged;
         }
 
         private void Instance_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -29,7 +29,7 @@ namespace FlightSimulator.Model
         {
             get
             {
-                return SingletonInfoServer.Instance.Lat;
+                return Info.Instance.Lat;
             }
         }
 
@@ -37,7 +37,7 @@ namespace FlightSimulator.Model
         {
             get
             {
-                return SingletonInfoServer.Instance.Lon;
+                return Info.Instance.Lon;
             }
         }
 

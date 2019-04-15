@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.ViewModels
 {
-    class ManualVM
+    class ManualVM : BaseNotify
     {
         String _rudderP;
         String _throttleP;
         String _elevatorP;
         String _aileronP;
+        private ManualModel model;
 
         public ManualVM()
         {
@@ -21,8 +22,13 @@ namespace FlightSimulator.ViewModels
             _throttleP = "set /controls/engines/current-engine/throttle ";
             _elevatorP = "set /controls/flight/elevator ";
             _aileronP = "set /controls/flight/aileron ";
+            model = new ManualModel();
+            model.PropertyChanged += Model_PropertyChanged; ;
+        }
 
-
+        private void Model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            NotifyPropertyChanged(e.PropertyName);
         }
 
         //properties
@@ -31,6 +37,10 @@ namespace FlightSimulator.ViewModels
             set
             {
                 set(_rudderP, value);
+            }
+            get
+            {
+                return model.Rudder;
             }
 
         }
@@ -42,6 +52,10 @@ namespace FlightSimulator.ViewModels
             {
                 set(_throttleP, value);
             }
+            get
+            {
+                return model.Throttle;
+            }
 
         }
 
@@ -50,9 +64,11 @@ namespace FlightSimulator.ViewModels
             set
             {
                set(_aileronP, value);
-
             }
-
+            get
+            {
+                return model.Aileron;
+            }
         }
      
         public double Elevator
@@ -60,6 +76,10 @@ namespace FlightSimulator.ViewModels
             set
             {
                 set(_elevatorP, value);
+            }
+            get
+            {
+                return model.Elevator;
             }
 
         }

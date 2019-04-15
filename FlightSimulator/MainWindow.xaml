@@ -27,7 +27,7 @@ Title="MainWindow" Height="600" Width="1000">
                 </TabItem>
                 <TabItem Header="Auto Pilot">
                     <Grid>
-                        <local:autoPilot  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="8"/>
+                        <local:autoPilot  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"/>
                     </Grid>
                 </TabItem>
             </TabControl>

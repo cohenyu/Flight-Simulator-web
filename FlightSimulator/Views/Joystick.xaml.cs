@@ -135,9 +135,7 @@ namespace FlightSimulator.Views
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
-            ///!!!!!!!!!!!!!!!!!
-            /// YOU MUST CHANGE THE FUNCTION!!!!
-            ///!!!!!!!!!!!!!!
+       
             if (!Knob.IsMouseCaptured) return;
 
             Point newPos = e.GetPosition(Base);

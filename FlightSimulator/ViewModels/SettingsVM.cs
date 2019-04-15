@@ -43,7 +43,7 @@ namespace FlightSimulator.ViewModels
             Console.WriteLine("connecttttt");
             new Thread(() =>
             {
-                SingletonInfoServer.Instance.openServer();
+                Info.Instance.openServer();
                 Commands.CommandInstance.openClient();
             }).Start();
         }
