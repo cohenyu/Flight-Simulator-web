@@ -15,6 +15,7 @@ namespace FlightSimulator.Model
     {
         private TcpClient client;
         private NetworkStream writer;
+        bool isConnected = false;
 
         private Commands()
         {
@@ -47,6 +48,7 @@ namespace FlightSimulator.Model
 
         public void Connect(int port, string ip)
         {
+       
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
             while (!client.Connected)
             {
@@ -59,11 +61,16 @@ namespace FlightSimulator.Model
 
                 }
             }
+            isConnected = true;
             writer = client.GetStream();
         }
 
         public void sendData(string data)
         {
+            if (!isConnected)
+            {
+                return;
+            }
             if (!string.IsNullOrEmpty(data))
             {
                 string[] commands = data.Split('\n');

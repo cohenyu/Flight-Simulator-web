@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FlightSimulator.Model;
@@ -40,9 +41,11 @@ namespace FlightSimulator.ViewModels
         private void OnConnect()
         {
             Console.WriteLine("connecttttt");
-            SingletonInfoServer.InfoInstance.openServer();
-            Commands.CommandInstance.openClient();
-
+            new Thread(() =>
+            {
+                SingletonInfoServer.Instance.openServer();
+                Commands.CommandInstance.openClient();
+            }).Start();
         }
     }
 }

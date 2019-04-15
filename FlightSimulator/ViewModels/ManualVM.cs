@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FlightSimulator.ViewModels
@@ -29,8 +30,7 @@ namespace FlightSimulator.ViewModels
         {
             set
             {
-                String messageToClient = _rudderP + value;
-                Commands.CommandInstance.sendData(messageToClient);
+                set(_rudderP, value);
             }
 
         }
@@ -40,8 +40,7 @@ namespace FlightSimulator.ViewModels
         {
             set
             {
-                String messageToClient = _throttleP + value;
-                Commands.CommandInstance.sendData(messageToClient);
+                set(_throttleP, value);
             }
 
         }
@@ -50,8 +49,7 @@ namespace FlightSimulator.ViewModels
         {
             set
             {
-                String messageToClient = _aileronP + value;
-                Commands.CommandInstance.sendData(messageToClient);
+               set(_aileronP, value);
 
             }
 
@@ -61,13 +59,17 @@ namespace FlightSimulator.ViewModels
         {
             set
             {
-                String messageToClient = _elevatorP + value;
-                Commands.CommandInstance.sendData(messageToClient);
-
+                set(_elevatorP, value);
             }
 
         }
 
+
+        void set(string path, double value)
+        {
+            String messageToClient = path + value;
+            new Thread(() => Commands.CommandInstance.sendData(messageToClient)).Start();
+        }
 
     }
 }

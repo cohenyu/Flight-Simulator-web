@@ -1,6 +1,8 @@
-﻿using FlightSimulator.Model.Interface;
+﻿using FlightSimulator.Model;
+using FlightSimulator.Model.Interface;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,15 +11,32 @@ namespace FlightSimulator.ViewModels
 {
     public class FlightBoardViewModel : BaseNotify
     {
-
-        public double Lon
+        private Info info;
+        public FlightBoardViewModel()
         {
-            get;
+            info = new Info();
+            info.PropertyChanged += FlightBoardViewModel_PropertyChanged;
         }
 
-        public double Lat
+        private void FlightBoardViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            get;
+            NotifyPropertyChanged(e.PropertyName);
+        }
+
+        public float? Lon
+        {
+            get
+            {
+                return info.Lon;
+            }
+        }
+
+        public float? Lat
+        {
+            get
+            {
+                return info.Lat;
+            }
         }
     }
 }
