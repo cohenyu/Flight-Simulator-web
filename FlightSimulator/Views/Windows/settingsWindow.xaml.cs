@@ -1,5 +1,4 @@
-﻿using FlightSimulator.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulator.ViewModels.Windows;
+using FlightSimulator.Model;
+using FlightSimulator.ViewModels;
 
-namespace FlightSimulator
+namespace FlightSimulator.Views
 {
     /// <summary>
-    /// Interaction logic for manual.xaml
+    /// Interaction logic for settingsWindow.xaml
     /// </summary>
-    public partial class manual : UserControl
+    public partial class settingsWindow : Window
     {
+        private SettingsWindowViewModel vm;
+
         // constructor
-        public manual()
+        public settingsWindow()
         {
             InitializeComponent();
-            DataContext = new ManualVM();
+            vm = new SettingsWindowViewModel(new ApplicationSettingsModel(), this);
+            this.DataContext = vm;
+           
         }
     }
 }

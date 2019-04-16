@@ -14,19 +14,18 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlightSimulator.ViewModels;
 
-
-namespace FlightSimulator
+namespace FlightSimulator.Views
 {
     /// <summary>
-    /// Interaction logic for flightBoardControls.xaml
+    /// Interaction logic for Manual.xaml
     /// </summary>
-    public partial class flightBoardControls : UserControl
+    public partial class Manual : UserControl
     {
-        // constructor
-        public flightBoardControls()
+        public Manual()
         {
             InitializeComponent();
-            this.DataContext = new SettingsVM();
+            DataContext = new ManualVM();
         }
     }
 }
+

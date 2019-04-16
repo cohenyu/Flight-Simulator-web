@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-namespace FlightSimulator
+namespace FlightSimulator.Views
 {
     /// <summary>
     /// Interaction logic for autoPilot.xaml

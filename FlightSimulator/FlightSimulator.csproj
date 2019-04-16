@@ -80,29 +80,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="autoPilot.xaml.cs">
+    <Compile Include="Views\autoPilot.xaml.cs">
       <DependentUpon>autoPilot.xaml</DependentUpon>
     </Compile>
-    <Compile Include="flightBoardControls.xaml.cs">
+    <Compile Include="Views\flightBoardControls.xaml.cs">
       <DependentUpon>flightBoardControls.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="manual.xaml.cs">
-      <DependentUpon>manual.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\ApplicationSettingsModel.cs" />
     <Compile Include="Model\CommandHandler.cs" />
-    <Compile Include="Model\Commands.cs" />
+    <Compile Include="Communication\Commands.cs" />
     <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
     <Compile Include="Model\FlightBoardModel.cs" />
     <Compile Include="Model\Interface\ISettingsModel.cs" />
     <Compile Include="Model\ManualModel.cs" />
-    <Compile Include="settingsWindow.xaml.cs">
+    <Compile Include="Views\Manual.xaml.cs">
+      <DependentUpon>Manual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\settingsWindow.xaml.cs">
       <DependentUpon>settingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Info.cs" />
+    <Compile Include="Communication\Info.cs" />
     <Compile Include="ViewModels\AutoPilotVM.cs" />
     <Compile Include="ViewModels\BaseNotify.cs" />
     <Compile Include="ViewModels\FlightBoardVM.cs" />
@@ -119,11 +119,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="autoPilot.xaml">
+    <Page Include="Views\autoPilot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="flightBoardControls.xaml">
+    <Page Include="Views\flightBoardControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,11 +131,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="manual.xaml">
+    <Page Include="Views\Manual.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="settingsWindow.xaml">
+    <Page Include="Views\Windows\settingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,8 +175,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Windows\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

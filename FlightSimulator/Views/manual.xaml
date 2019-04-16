@@ -1,10 +1,9 @@
-﻿<UserControl x:Class="FlightSimulator.manual"
+﻿<UserControl x:Class="FlightSimulator.Views.Manual"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FlightSimulator"
-             xmlns:Controls="clr-namespace:FlightSimulator.Views"
+             xmlns:local="clr-namespace:FlightSimulator.Views"
              mc:Ignorable="d" 
              d:DesignHeight="470" d:DesignWidth="470">
 
@@ -33,9 +32,9 @@
                 <RotateTransform Angle="+90"/>
             </TextBlock.LayoutTransform>
         </TextBlock>
-        <Controls:Joystick x:Name="joystick" Grid.Column="2" Grid.Row="1" Elevator="{Binding Elevator, Mode=OneWayToSource}" Aileron="{Binding Aileron, Mode=OneWayToSource}"/>
-        
-        
+        <local:Joystick x:Name="joystick" Grid.Column="2" Grid.Row="1" Elevator="{Binding Elevator, Mode=OneWayToSource}" Aileron="{Binding Aileron, Mode=OneWayToSource}"/>
+
+
         <Slider x:Name="rudderSlider" Grid.Column="2" HorizontalAlignment="Center" Height="45" Grid.Row="2" Margin="6" VerticalAlignment="Top" Width="300"  Minimum="-1" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.1" Value="{Binding Rudder, Mode=TwoWay}"/>
         <Slider x:Name="throttleSlider" Grid.Column="1" HorizontalAlignment="Left" Height="300"  Grid.Row="1" Margin="0" VerticalAlignment="Center" Minimum="-1" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.1" Orientation="Vertical" Value="{Binding Throttle, Mode=TwoWay}"/>
         <TextBlock Text ="{Binding ElementName=joystick ,StringFormat=0.0#, Path=Aileron}" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>

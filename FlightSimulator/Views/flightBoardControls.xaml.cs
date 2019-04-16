@@ -10,27 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FlightSimulator.ViewModels.Windows;
-using FlightSimulator.Model;
 using FlightSimulator.ViewModels;
 
-namespace FlightSimulator
+
+namespace FlightSimulator.Views
 {
     /// <summary>
-    /// Interaction logic for settingsWindow.xaml
+    /// Interaction logic for flightBoardControls.xaml
     /// </summary>
-    public partial class settingsWindow : Window
+    public partial class flightBoardControls : UserControl
     {
-        private SettingsWindowViewModel vm;
-
         // constructor
-        public settingsWindow()
+        public flightBoardControls()
         {
             InitializeComponent();
-            vm = new SettingsWindowViewModel(new ApplicationSettingsModel(), this);
-            this.DataContext = vm;
-           
+            this.DataContext = new SettingsVM();
         }
     }
 }
