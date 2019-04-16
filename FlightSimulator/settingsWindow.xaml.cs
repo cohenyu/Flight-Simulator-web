@@ -22,8 +22,9 @@ namespace FlightSimulator
     /// </summary>
     public partial class settingsWindow : Window
     {
-
         private SettingsWindowViewModel vm;
+
+        // constructor
         public settingsWindow()
         {
             InitializeComponent();

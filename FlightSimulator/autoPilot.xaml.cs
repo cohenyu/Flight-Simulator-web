@@ -22,6 +22,7 @@ namespace FlightSimulator
     /// </summary>
     public partial class autoPilot : UserControl
     {
+        // constructor
         public autoPilot()
         {
             InitializeComponent();

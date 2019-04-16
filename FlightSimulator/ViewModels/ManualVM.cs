@@ -8,20 +8,25 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.ViewModels
 {
+    /// <summary>
+    /// This is the view model of the manual - joystick and sliders.
+    /// </summary>
     class ManualVM : BaseNotify
     {
-        String _rudderP;
-        String _throttleP;
-        String _elevatorP;
-        String _aileronP;
+        String _rudder;
+        String _throttle;
+        String _elevator;
+        String _aileron;
         private ManualModel model;
 
+        // constructor
         public ManualVM()
         {
-            _rudderP = "set /controls/flight/rudder ";
-            _throttleP = "set /controls/engines/current-engine/throttle ";
-            _elevatorP = "set /controls/flight/elevator ";
-            _aileronP = "set /controls/flight/aileron ";
+            _rudder = "set /controls/flight/rudder ";
+            _throttle = "set /controls/engines/current-engine/throttle ";
+            _elevator = "set /controls/flight/elevator ";
+            _aileron = "set /controls/flight/aileron ";
+
             model = new ManualModel();
             model.PropertyChanged += Model_PropertyChanged; ;
         }
@@ -31,12 +36,12 @@ namespace FlightSimulator.ViewModels
             NotifyPropertyChanged(e.PropertyName);
         }
 
-        //properties
+        //property
         public double Rudder
         {
             set
             {
-                set(_rudderP, value);
+                set(_rudder, value);
             }
             get
             {
@@ -45,12 +50,12 @@ namespace FlightSimulator.ViewModels
 
         }
 
-        //properties
+        //property
         public double Throttle
         {
             set
             {
-                set(_throttleP, value);
+                set(_throttle, value);
             }
             get
             {
@@ -59,36 +64,33 @@ namespace FlightSimulator.ViewModels
 
         }
 
+        //property
         public double Aileron
         {
             set
             {
-               set(_aileronP, value);
+                set(_aileron, value);
+
             }
-            get
-            {
-                return model.Aileron;
-            }
+
         }
-     
+
+        //property
         public double Elevator
         {
             set
             {
-                set(_elevatorP, value);
-            }
-            get
-            {
-                return model.Elevator;
+                set(_elevator, value);
+
             }
 
         }
 
-
+        // send the data - path and value
         void set(string path, double value)
         {
             String messageToClient = path + value;
-            new Thread(() => Commands.CommandInstance.sendData(messageToClient)).Start();
+            new Thread(() => Commands.Instance.sendData(messageToClient)).Start();
         }
 
     }

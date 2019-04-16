@@ -10,10 +10,13 @@ using FlightSimulator.Views;
 
 namespace FlightSimulator.ViewModels
 {
+    /// <summary>
+    /// This is the view model of the buttons -settings and ok.
+    /// </summary>
     class SettingsVM
     {
         private ICommand _settingsCommand;
-        //properties
+        //property
         public ICommand SettingsCommand
         {
             get
@@ -24,12 +27,13 @@ namespace FlightSimulator.ViewModels
 
         private void OnClick()
         {
+            // show the settings window
             settingsWindow s = new settingsWindow();
             s.ShowDialog();
         }
 
         private ICommand _connectCommand;
-        //properies
+        //propery
         public ICommand ConnectCommand
         {
             get
@@ -38,13 +42,14 @@ namespace FlightSimulator.ViewModels
             }
 
         }
+
         private void OnConnect()
         {
-            Console.WriteLine("connecttttt");
+            // start the communication
             new Thread(() =>
             {
                 Info.Instance.openServer();
-                Commands.CommandInstance.openClient();
+                Commands.Instance.openClient();
             }).Start();
         }
     }

@@ -15,16 +15,20 @@ namespace FlightSimulator.ViewModels.Windows
         private ISettingsModel model;
         private settingsWindow setWindow;
 
+        // constructor
         public SettingsWindowViewModel(ISettingsModel model, settingsWindow setWindow)
         {
             this.model = model;
             this.setWindow = setWindow;
         }
 
-        
+        // property
         public string FlightServerIP
         {
-            get { return model.FlightServerIP; }
+            get
+            {
+                return model.FlightServerIP;
+            }
             set
             {
                 model.FlightServerIP = value;
@@ -32,9 +36,13 @@ namespace FlightSimulator.ViewModels.Windows
             }
         }
 
+        // property
         public int FlightCommandPort
         {
-            get { return model.FlightCommandPort; }
+            get
+            {
+                return model.FlightCommandPort;
+            }
             set
             {
                 model.FlightCommandPort = value;
@@ -42,9 +50,13 @@ namespace FlightSimulator.ViewModels.Windows
             }
         }
 
+        // property
         public int FlightInfoPort
         {
-            get { return model.FlightInfoPort; }
+            get
+            {
+                return model.FlightInfoPort;
+            }
             set
             {
                 model.FlightInfoPort = value;
@@ -65,6 +77,7 @@ namespace FlightSimulator.ViewModels.Windows
         #region Commands
         #region OKCommand
         private ICommand _okCommand;
+        // property
         public ICommand OKCommand
         {
             get
@@ -74,7 +87,7 @@ namespace FlightSimulator.ViewModels.Windows
         }
         private void OkClick()
         {
-
+            // Save the data and close the window.
             model.SaveSettings();
             if (this.setWindow != null)
             {
@@ -85,6 +98,7 @@ namespace FlightSimulator.ViewModels.Windows
 
         #region CancelCommand
         private ICommand _cancelCommand;
+        // property
         public ICommand CancelCommand
         {
             get
@@ -95,6 +109,7 @@ namespace FlightSimulator.ViewModels.Windows
 
         private void OnCancel()
         {
+            // Reload the data and close the window.
             model.ReloadSettings();
             if(this.setWindow != null)
             {

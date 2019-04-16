@@ -11,12 +11,17 @@ using System.Threading;
 
 namespace FlightSimulator.Model
 {
+    /// <summary>
+    /// This class will be used as a client connection to the simulator which will serve as a server - through
+    /// we will send sets command to the simulator.
+    /// </summary>
     class Commands
     {
         private TcpClient client;
         private NetworkStream writer;
         bool isConnected = false;
 
+        // constructor
         private Commands()
         {
             this.client = new TcpClient();
@@ -25,10 +30,12 @@ namespace FlightSimulator.Model
 
         #region Singleton
         private static Commands command_instance = null;
-        public static Commands CommandInstance
+        // property - singleton
+        public static Commands Instance
         {
             get
             {
+                // if not created yet
                 if (command_instance == null)
                 {
                     command_instance = new Commands();
@@ -38,6 +45,9 @@ namespace FlightSimulator.Model
         }
         #endregion
 
+        /// <summary>
+        /// The function opens communication in the corresponding port and ip.
+        /// </summary>
         public void openClient()
         {
             new Thread(delegate ()
@@ -46,9 +56,12 @@ namespace FlightSimulator.Model
             }).Start();
         }
 
+        /// <summary>
+        /// The function opens communication in the corresponding port and ip.
+        /// </summary>
         public void Connect(int port, string ip)
         {
-       
+            // Waiting to connection.
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
             while (!client.Connected)
             {
@@ -65,12 +78,16 @@ namespace FlightSimulator.Model
             writer = client.GetStream();
         }
 
+        /// <summary>
+        /// this function sends the data to the client.
+        /// </summary>
         public void sendData(string data)
         {
             if (!isConnected)
             {
                 return;
             }
+
             if (!string.IsNullOrEmpty(data))
             {
                 string[] commands = data.Split('\n');
@@ -78,6 +95,7 @@ namespace FlightSimulator.Model
                 {
                     foreach (string line in commands)
                     {
+                        // Preparing for a line in windows.
                         Byte[] bytes = Encoding.ASCII.GetBytes(line + "\r\n");
                         writer.Write(bytes, 0, bytes.Length);
                         System.Threading.Thread.Sleep(2000);

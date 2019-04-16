@@ -26,12 +26,14 @@ namespace FlightSimulator.Views
     public partial class FlightBoard : UserControl
     {
         ObservableDataSource<Point> planeLocations = null;
+        FlightBoardVM viewM;
+
         public FlightBoard()
         {
             InitializeComponent();
-            FlightBoardViewModel vm = new FlightBoardViewModel();
-            vm.PropertyChanged += Vm_PropertyChanged;
-            DataContext = vm;
+            viewM = new FlightBoardVM();
+            viewM.PropertyChanged += Vm_PropertyChanged;
+            DataContext = viewM;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -45,14 +47,14 @@ namespace FlightSimulator.Views
 
         private void Vm_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            // We will display the values ​​of lon and lat and just if they are different from null.
             if (e.PropertyName.Equals("Lat") || e.PropertyName.Equals("Lon"))
             {
-                FlightBoardViewModel vm = (FlightBoardViewModel)sender;
-                if (vm.Lat != null && vm.Lon != null)
+                if (viewM.Lat != null && viewM.Lon != null)
                 {
-                    Console.WriteLine("Lat: " + vm.Lat + " Lon: " + vm.Lon);
-          
-                    Point p1 = new Point((float)vm.Lat, (float)vm.Lon);            // Fill here!
+                    Console.WriteLine("Lat: " + viewM.Lat + " Lon: " + viewM.Lon);
+                    Point p1 = new Point((float)viewM.Lat, (float)viewM.Lon);
+                    // Add the point to the chart.
                     planeLocations.AppendAsync(Dispatcher, p1);
                 }
             }

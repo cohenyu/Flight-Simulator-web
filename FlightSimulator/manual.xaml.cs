@@ -21,6 +21,7 @@ namespace FlightSimulator
     /// </summary>
     public partial class manual : UserControl
     {
+        // constructor
         public manual()
         {
             InitializeComponent();

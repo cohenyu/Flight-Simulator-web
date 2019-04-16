@@ -9,10 +9,13 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.ViewModels
 {
-    public class FlightBoardViewModel : BaseNotify
+    public class FlightBoardVM : BaseNotify
     {
+        /// <summary>
+        /// This is the view model of the flight board.
+        /// </summary>
         private FlightBoardModel info;
-        public FlightBoardViewModel()
+        public FlightBoardVM()
         {
             info = new FlightBoardModel();
             info.PropertyChanged += FlightBoardViewModel_PropertyChanged;
@@ -23,6 +26,7 @@ namespace FlightSimulator.ViewModels
             NotifyPropertyChanged(e.PropertyName);
         }
 
+        // property
         public float? Lon
         {
             get
@@ -31,6 +35,7 @@ namespace FlightSimulator.ViewModels
             }
         }
 
+        // property
         public float? Lat
         {
             get

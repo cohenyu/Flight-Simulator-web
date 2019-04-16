@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.Model
 {
+    /// <summary>
+    /// This is the manual model.
+    /// </summary>
     class ManualModel : BaseNotify
     {
+        // constructor
         public ManualModel()
         {
+            // Event registration.
             Info.Instance.PropertyChanged += Instance_PropertyChanged;
         }
 
@@ -19,6 +24,7 @@ namespace FlightSimulator.Model
             NotifyPropertyChanged(e.PropertyName);
         }
 
+        // getting value ​​from the server.
         public double Throttle
         {
             get
@@ -27,6 +33,7 @@ namespace FlightSimulator.Model
             }
         }
 
+        // getting value ​​from the server.
         public double Rudder
         {
             get
@@ -34,23 +41,5 @@ namespace FlightSimulator.Model
                 return Info.Instance.Rudder;
             }
         }
-
-        public double Aileron
-        {
-            get
-            {
-                return Info.Instance.Aileron;
-            }
-        }
-
-        public double Elevator
-        {
-            get
-            {
-                return Info.Instance.Elevator;
-            }
-        }
-
-
     }
 }

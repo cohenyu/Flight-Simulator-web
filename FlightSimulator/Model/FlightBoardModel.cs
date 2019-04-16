@@ -13,10 +13,15 @@ using System.Threading;
 
 namespace FlightSimulator.Model
 {
+    /// <summary>
+    /// This is the flight board model.
+    /// </summary>
     public class FlightBoardModel : BaseNotify
     {
+        // constructor
         public FlightBoardModel()
         {
+            // Event registration.
             Info.Instance.PropertyChanged += Instance_PropertyChanged;
         }
 
@@ -25,6 +30,7 @@ namespace FlightSimulator.Model
             NotifyPropertyChanged(e.PropertyName);
         }
 
+        // getting value ​​from the server.
         public float? Lat
         {
             get
@@ -33,6 +39,7 @@ namespace FlightSimulator.Model
             }
         }
 
+        // getting value ​​from the server.
         public float? Lon
         {
             get

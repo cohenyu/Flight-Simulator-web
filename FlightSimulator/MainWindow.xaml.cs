@@ -19,6 +19,7 @@ namespace FlightSimulator
     /// </summary>
     public partial class MainWindow : Window
     {
+        // constructor
         public MainWindow()
         {
             InitializeComponent();

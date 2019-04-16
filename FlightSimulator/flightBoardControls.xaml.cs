@@ -22,11 +22,11 @@ namespace FlightSimulator
     /// </summary>
     public partial class flightBoardControls : UserControl
     {
+        // constructor
         public flightBoardControls()
         {
             InitializeComponent();
             this.DataContext = new SettingsVM();
-            
         }
     }
 }
