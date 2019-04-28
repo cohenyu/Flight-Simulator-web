@@ -148,13 +148,8 @@ namespace FlightSimulator.Views
 
             Elevator = -deltaPos.Y;
             Elevator /= 124;
-            Console.WriteLine("Elevator: " + Elevator);
-            System.Diagnostics.Debug.WriteLine("Elevator: " + Elevator);
             Aileron = deltaPos.X;
             Aileron /= 124;
-            Console.WriteLine("Aileron: " + Aileron);
-            System.Diagnostics.Debug.WriteLine("Aileron: " + Aileron);
-
 
             knobPosition.X = deltaPos.X;
             knobPosition.Y = deltaPos.Y;

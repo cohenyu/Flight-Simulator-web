@@ -156,19 +156,12 @@ namespace FlightSimulator
             string inputLine;
             string[] splitStr;
 
-            //Thread.Sleep(100 * 1000);
             while (!shouldStop)
             {
                 inputLine = ReadUntilNewLine(reader);
                 if (inputLine == null)
                 {
                     break;
-                }
-
-                // Wait for the values ​​to update
-                if (Convert.ToInt32((DateTime.UtcNow - start).TotalSeconds) < 90)
-                {
-                    continue;
                 }
 
                 // Taking the relevant values
@@ -179,6 +172,7 @@ namespace FlightSimulator
                 Throttle = float.Parse(splitStr[23]);
             }
             // Closing the communication.
+            reader.Close();
             stream.Close();
             clientSocket.Close();
             server.Stop();

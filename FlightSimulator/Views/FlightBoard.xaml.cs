@@ -52,7 +52,6 @@ namespace FlightSimulator.Views
             {
                 if (viewM.Lat != null && viewM.Lon != null)
                 {
-                    Console.WriteLine("Lat: " + viewM.Lat + " Lon: " + viewM.Lon);
                     Point p1 = new Point((float)viewM.Lat, (float)viewM.Lon);
                     // Add the point to the chart.
                     planeLocations.AppendAsync(Dispatcher, p1);
