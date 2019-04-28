@@ -48,9 +48,27 @@ namespace FlightSimulator.ViewModels
             // start the communication
             new Thread(() =>
             {
-                Info.Instance.openServer();
-                Commands.Instance.openClient();
+                Info.Instance.OpenServer();
+                Commands.Instance.OpenClient();
             }).Start();
         }
+
+        private ICommand _disconnectCommand;
+        // property
+        public ICommand DisconnectCommand
+        {
+            get
+            {
+                return _disconnectCommand ?? (_disconnectCommand = new CommandHandler(() => OnDisconnect()));
+            }
+        }
+
+        // close the info and commands
+        private void OnDisconnect()
+        {
+            Info.Instance.Close();
+            Commands.Instance.Close();
+        }
+
     }
 }

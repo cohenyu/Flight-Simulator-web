@@ -92,7 +92,7 @@ namespace FlightSimulator.ViewModels
             // Clear the text box and send the data.
             string textToSend = StringCommandFromUser;
             StringCommandFromUser = "";
-            new Thread(() => commandsClient.sendData(textToSend)).Start();
+            new Thread(() => commandsClient.SendData(textToSend)).Start();
         }
 
     }

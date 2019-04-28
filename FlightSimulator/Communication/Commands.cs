@@ -48,7 +48,7 @@ namespace FlightSimulator.Model
         /// <summary>
         /// The function opens communication in the corresponding port and ip.
         /// </summary>
-        public void openClient()
+        public void OpenClient()
         {
             new Thread(delegate ()
             {
@@ -81,7 +81,7 @@ namespace FlightSimulator.Model
         /// <summary>
         /// this function sends the data to the client.
         /// </summary>
-        public void sendData(string data)
+        public void SendData(string data)
         {
             if (!isConnected)
             {
@@ -106,5 +106,10 @@ namespace FlightSimulator.Model
             }
         }
 
+        public void Close()
+        {
+            isConnected = false;
+            client.Close();
+        }
     }
 }

@@ -90,7 +90,7 @@ namespace FlightSimulator.ViewModels
         void set(string path, double value)
         {
             String messageToClient = path + value;
-            new Thread(() => Commands.Instance.sendData(messageToClient)).Start();
+            new Thread(() => Commands.Instance.SendData(messageToClient)).Start();
         }
 
     }

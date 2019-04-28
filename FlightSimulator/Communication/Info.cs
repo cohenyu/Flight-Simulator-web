@@ -108,7 +108,7 @@ namespace FlightSimulator
         /// <summary>
         /// The function reads from the reader until the line breaks.
         /// </summary>
-        private static string readUntilNewLine(BinaryReader reader)
+        private static string ReadUntilNewLine(BinaryReader reader)
         {
             char[] buffer = new char[1024];
             int i = 0;
@@ -134,19 +134,19 @@ namespace FlightSimulator
         /// <summary>
         /// The function opens a server that accepts and listens a client.
         /// </summary>
-        public void openServer()
+        public void OpenServer()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(Properties.Settings.Default.FlightServerIP), Properties.Settings.Default.FlightInfoPort);
             TcpListener server = new TcpListener(ep);
             server.Start();
             TcpClient clientSocket = server.AcceptTcpClient();
-            (new Thread(() => listenFlight(server,clientSocket))).Start();
+            (new Thread(() => ListenFlight(server,clientSocket))).Start();
         }
 
         /// <summary>
         ///  The function listens to the values ​​that the simulator sends.
         /// </summary>
-        private void listenFlight(TcpListener server, TcpClient clientSocket)
+        private void ListenFlight(TcpListener server, TcpClient clientSocket)
         {
             // get the data from client
             NetworkStream stream = clientSocket.GetStream();
@@ -159,7 +159,7 @@ namespace FlightSimulator
             //Thread.Sleep(100 * 1000);
             while (!shouldStop)
             {
-                inputLine = readUntilNewLine(reader);
+                inputLine = ReadUntilNewLine(reader);
                 if (inputLine == null)
                 {
                     break;
@@ -179,8 +179,14 @@ namespace FlightSimulator
                 Throttle = float.Parse(splitStr[23]);
             }
             // Closing the communication.
+            stream.Close();
             clientSocket.Close();
             server.Stop();
         }
+
+       public void Close()
+       {
+            shouldStop = true;
+       }
     }
 }
